@@ -6,7 +6,7 @@ console.log(arr.length);
 function Pagination() {
   const [products, setProducts] = useState([]);
   const [page, setPage] = useState(1);
-  const [rowsPerPage, setRowsPerPage] = useState(5);
+  const [rowsPerPage, setRowsPerPage] = useState(7);
 
   const selectPageHandler = (selectedPage) => {
     if (
