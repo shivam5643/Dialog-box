@@ -1,47 +1,6 @@
 import { useEffect, useState } from "react";
 import { TbFileDownload } from "react-icons/tb";
-const arr = [
-  {
-    date: "22.07.2021",
-    name: "APP_URL_USAGE(Exclude_half_days)_34_2_89_2021.csv",
-  },
-  {
-    date: "22.07.2021",
-    name: "APP_URL_USAGE(Exclude_half_days)_34_2_89_2021.csv",
-  },
-  {
-    date: "22.07.2021",
-    name: "APP_URL_USAGE(Exclude_half_days)_34_2_89_2021.csv",
-  },
-  {
-    date: "22.07.2021",
-    name: "APP_URL_USAGE(Exclude_half_days)_34_2_89_2021.csv",
-  },
-  {
-    date: "22.07.2021",
-    name: "APP_URL_USAGE(Exclude_half_days)_34_2_89_2021.csv",
-  },
-  {
-    date: "22.07.2021",
-    name: "APP_URL_USAGE(Exclude_half_days)_34_2_89_2021.csv",
-  },
-  {
-    date: "22.07.2021",
-    name: "APP_URL_USAGE(Exclude_half_days)_34_2_89_2021.csv",
-  },
-  {
-    date: "22.07.2021",
-    name: "APP_URL_USAGE(Exclude_half_days)_34_2_89_2021.csv",
-  },
-  {
-    date: "22.07.2021",
-    name: "APP_URL_USAGE(Exclude_half_days)_34_2_89_2021.csv",
-  },
-  {
-    date: "22.07.2021",
-    name: "APP_URL_USAGE(Exclude_half_days)_34_2_89_2021.csv",
-  },
-];
+import arr from "./index.js";
 
 console.log(arr.length);
 function Pagination() {
@@ -77,7 +36,9 @@ function Pagination() {
 
 
     <tbody>
-      {arr.length > 0 &&
+      {arr.length == 0? <h1>
+        No data
+      </h1> : 
         arr
           .slice((page - 1) * rowsPerPage, page * rowsPerPage)
           .map((prod, index) => (
@@ -90,6 +51,7 @@ function Pagination() {
 
             </tr>
           ))}
+         
     </tbody>
   </table>
 </div>
@@ -107,7 +69,7 @@ function Pagination() {
             ◀ Prev
           </span>
 
-          {[...Array(Math.ceil(arr.length / 2))].map((_, i) => {
+        {[...Array(Math.ceil(arr.length / rowsPerPage  ))].map((_, i) => {
             return (
               <span
                 key={i}
@@ -119,12 +81,13 @@ function Pagination() {
             );
           })}
 
-          <span
+          {page < arr.length / rowsPerPage?
+            <span
             onClick={() => selectPageHandler(page + 1)}
-            className={page < arr.length / 2 ? "border px-4 py-2 cursor-pointer" : "opacity-0"}
+            className={page < arr.length / rowsPerPage ? "border px-4 py-2 cursor-pointer" : "opacity-0"}
           >
             Next ▶
-          </span>
+          </span>: null}
         </div>
       )}
     </div>
@@ -137,7 +100,7 @@ function Pagination() {
         value={rowsPerPage}
         onChange={handleChangeRowsPerPage}
       >
-        {[4,5,6,7,8,9,10].map((option) => (
+        {[7,8,9,10,11].map((option) => (
           <option key={option} value={option}>
             {option}
           </option>
